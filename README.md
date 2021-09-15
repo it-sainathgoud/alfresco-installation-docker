@@ -10,7 +10,7 @@ MDF9RNGUJPKZ83KK8UVGUVWO9AYKUZ0VN6WG5VOOCUT6BX19JJLU5ZL0HKU7N20C
 docker-compose up
 ```
 
-# Creating a custom Alfresco repository image (Dockerfile)
+## Creating a custom Alfresco repository image (Dockerfile)
 
 ```
 FROM quay.io/alfresco/alfresco-content-repository:7.0.0
@@ -35,4 +35,23 @@ USER alfresco
 
 ## Build
 docker build whopper-alfresco -t alfresco/whopper-alfresco:7.0.0 -t alfresco/whopper-alfresco:latest
+```
+
+## Creating a custom Alfresco Share image
+
+```
+#Dockerfile - alfresco
+FROM quay.io/alfresco/alfresco-share:7.0.0
+
+ARG TOMCAT_DIR=/usr/local/tomcat
+
+# Apply Share SAML customization
+ADD ./saml/alfresco-saml-share-1.2.1.amp ${TOMCAT_DIR}/amps_share/
+
+RUN java -jar ${TOMCAT_DIR}/alfresco-mmt/alfresco-mmt*.jar install \
+     ${TOMCAT_DIR}/amps_share ${TOMCAT_DIR}/webapps/share -directory -nobackup -verbose
+
+#Build
+docker build whopper-share -t alfresco/whopper-share:7.0.0 -t alfresco/whopper-share:latest
+
 ```
