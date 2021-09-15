@@ -1,5 +1,6 @@
 
-# Docker installation
+# Install using Docker Compose
+Due to the limited capabilities of Docker Compose, this deployment method is recommended for development and test environments only.
 
 ```
 docker login quay.io -u="alfresco+acs_v6_trial"
