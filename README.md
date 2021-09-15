@@ -1,15 +1,18 @@
 
 # Docker installation
 
+```
 docker login quay.io -u="alfresco+acs_v6_trial"
 
 Enter the following password when prompted (Copy and Paste):
 MDF9RNGUJPKZ83KK8UVGUVWO9AYKUZ0VN6WG5VOOCUT6BX19JJLU5ZL0HKU7N20C
 
 docker-compose up
+```
 
 # Creating a custom Alfresco repository image (Dockerfile)
 
+```
 FROM quay.io/alfresco/alfresco-content-repository:7.0.0
 
 ARG TOMCAT_DIR=/usr/local/tomcat
@@ -32,3 +35,4 @@ USER alfresco
 
 ## Build
 docker build whopper-alfresco -t alfresco/whopper-alfresco:7.0.0 -t alfresco/whopper-alfresco:latest
+```
