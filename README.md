@@ -1,16 +1,14 @@
 # Install Alfresco Content Services using Docker Compose
 Installing ACS using Docker Compose is best option available to do POC, Demos or to explore and deploy any integrated solutions into Alfresco such as custom SAML. Due to the limited capabilities of Docker Compose, this deployment method is recommended for development and test environments only. Lets see how easy it is to install ACS 7.0 solution with the supplied Docker Compose file. 
 
-To get the Docker Compose file, navigate to Alfresco website at [Alfresco] (#https://www.alfresco.com/platform/content-services-ecm/trial/download) and add your details to get temporary Docker Compose.yml file with instructions.  
+## Installation
+To get the Docker Compose file, navigate to Alfresco website at https://www.alfresco.com/platform/content-services-ecm/trial/download and add your details to get temporary Docker Compose.yml file.  
 
 * Install Docker and start it
 * Download the Alfresco docker-compose file
-* Follow the detailed instructions below
-
-
-## Docker Images
-
-* [alfresco-content-repository-community:7.0.0](https://hub.docker.com/r/alfresco/alfresco-content-repository-community)
+* Open a command prompt or terminal window
+* Navigate to the folder where you saved the docker-compose.yml file
+* Issue the following three commands:
 
 ```
 docker login quay.io -u="alfresco+acs_v6_trial"
@@ -20,6 +18,52 @@ MDF9RNGUJPKZ83KK8UVGUVWO9AYKUZ0VN6WG5VOOCUT6BX19JJLU5ZL0HKU7N20C
 
 docker-compose up
 ```
+
+* ACS services will be available at http://localhost:8080/alfresco. Your default username/password is: admin/admin
+* Alfresco Share will be available at http://localhost/share. 
+* Alfresco REST API Explorer will be available at http://localhost/api-explorer. 
+* Alfresco Search Services will be available at http://localhost/solr.  
+
+## Deploying additional addons
+If you want to deploy additional addons, use deployment folders for Alfresco and Share services.
+
+**Alfresco**
+```
+├── alfresco
+│   ├── modules             > Deployment directory for addons
+│   │   ├── amps            > Repository addons with AMP format
+│   │   └── jars            > Repository addons with JAR format
+```
+
+**Share**
+```
+└── share                   
+    └── modules             > Deployment directory for addons
+        ├── amps            > Share addons with AMP format
+        └── jars            > Share addons with JAR format
+```
+
+## Using Docker Compose
+Once the files have been generated, review that configuration is what you expected and add or modify any other settings. After that, just start Docker Compose.
+
+```
+$ docker-compose up --build --force-recreate -d
+
+You can shutdown it at any moment using following command.
+$ docker-compose down
+
+
+Alternatively if you choose to apply the start script, you can start the deployment with
+./start.sh
+
+It will wait until alfresco is reachable and shutdown with
+./start.sh -d
+
+
+More options are available with.
+./start.sh -h
+```
+
 
 ## Creating a custom Alfresco repository image (Dockerfile)
 
