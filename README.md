@@ -1,7 +1,7 @@
 # Install Alfresco Content Services using Docker Compose
 Installing ACS using Docker Compose is best option available to do POC, Demos or to explore and deploy any integrated solutions into Alfresco such as custom SAML. Due to the limited capabilities of Docker Compose, this deployment method is recommended for development and test environments only. Lets see how easy it is to install ACS 7.0 solution with the supplied Docker Compose file. 
 
-To get the Docker Compose file, navigate to Alfresco website at [Alfresco] (https://www.alfresco.com/platform/content-services-ecm/trial/download) and add your details to get temporary Docker Compose.yml file with instructions.  
+To get the Docker Compose file, navigate to Alfresco website at [Alfresco] (#https://www.alfresco.com/platform/content-services-ecm/trial/download) and add your details to get temporary Docker Compose.yml file with instructions.  
 
 * Install Docker and start it
 * Download the Alfresco docker-compose file
